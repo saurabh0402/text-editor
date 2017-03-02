@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Texitor! </title>
+	<link rel = "stylesheet" type = "text/css" href = "./css/main.css">
+</head>
+<body>
+	<button class = "infoButton">
+		INFO
+	</button>
+	<div class = "info hidden">
+		<button class = "crossButton hidden"><img src = "./images/error.png" width = "50"></button>
+		<div class = "infoHead hidden">
+			Hello there.
+		</div>
+		<div class = "allInfo hidden">
+			Hello Sir/Madam, <br>I have tried completing all the tasks given in the challenge. This text editor, as asked does following things:<br>
+			<div class = "tabbed">
+				<ul>
+					<li> When user presses enter, a new paragraph is created with the new paragraph having the focus. </li>
+					<li> User can drag and drop paragraphs to change their order. User can start the drag from the end or an empty region of the paragraph. While the user drags a paragraph, the regions where it could be dragged are highlighted and when drop on a valid region, the paragraph is moved there, if possible.
+					<li> When user selects a word or a sentence, a tooltip is shown. From the tooltip user can select one of the four options - bold, underline, change color to red and change color to black.
+					<li> User can add links using &lt;a&gt; tags. When the user clicks on Done, all the links are shown below the Done button. The links redirect to correct pages as specified in the &lt;a&gt; tag and to # if not specified.
+					<li> If before selecting Done user checks the option to replace all four letter words, all the four letter words will be replaced by words generated from the link given.
+				</ul>
+			</div>
+			Regards.<br>
+			Saurabh Kumar : <a href = "mailto:saurabh.k0402@gmail.com"> saurabh.k0402@gmail.com </a>
+		</div>
+	</div>
+	<div class = "editorCont" contenteditable="true">
+		<div class = "loader hidden">
+			<div class = "loadImage"> <img src = "./images/loading.png" width = 50> </div>
+			Replacing all 4 letter words
+		</div>
+		<span contenteditable="false" class = "textFieldsCont">
+			<div class = "dragTarget"></div>
+			<p class = "textIp" contenteditable="true" draggable = "true"></p>
+			<div class = "dragTarget"></div>
+		</span>
+	</div><br>
+	<input type = "checkbox" name = "replaceCheck" id = "replaceCheck"><label for = "replaceCheck" class = "replaceLabel"> Replace 4 letter words </label>
+	<br> 
+	<button class = "done"> Done! </button>
+	<br>
+	<div class = "links hiddenMe"></div>
+	<div class = "selectMenu">
+		<button class = "bold"> B </button>
+		<button class = "underline"> U </button>
+		<button class = "red"> </button>
+		<button class = "black"> </button>
+		<div class = "triangle"></div>
+	</div>
+	<div class = "elementShownWhileDragging"></div>
+	<script src = "./js/app.js"> </script>
+	<script src = "./js/showLinks.js"> </script>
+	<script src = "./js/replaceFourLetterWords.js"> </script>
+	<script src = "./js/highlightMenu.js"> </script>
+	<script src = "./js/info.js"> </script>
+</body>
+</html>

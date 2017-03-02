@@ -1,0 +1,404 @@
+@font-face {
+	font-family: roboto;
+	src: url('../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+	font-family: geosans;
+	src: url('../fonts/GeosansLight.ttf');
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding: 3% 0px;
+	overflow-x: hidden;
+}
+
+.editorCont {
+	width: 60%;
+	height: 70%;
+	border: 1px solid rgb(26, 26, 26);
+	display: inline-block;
+	text-align: left;
+	padding: 0px 0px 20px 0px;
+	overflow: auto;
+	position: relative;
+}
+
+p {
+	min-height: 1em;
+	display: block;
+	font-family: roboto;
+	font-size: 1.2em;
+	padding: 0px 20px;
+}
+
+p:focus {
+	outline: none;
+	border: none;
+}
+
+.dragTarget {
+	height: 20px;
+}
+
+.done {
+	margin: 10px 0px 25px 0px;
+	padding: 5px 50px;
+	font-family: roboto;
+	font-size: 1.2em;
+	background: transparent;
+	border: 1px solid rgb(26, 26, 26);
+	color: rgb(26, 26, 26);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+	font-weight: bold;
+	cursor: pointer; 
+}
+
+.done.disabled {
+	opacity: 0.5;
+}
+
+.done.disabled:hover {
+	color: rgb(26,26,26);
+	background: white;
+}
+
+.done:hover {
+	color: white;
+	background: rgb(26, 26, 26);
+}
+
+.replaceLabel {
+	display: inline-block;
+	font-family: roboto;
+	font-size: 1em;
+	margin: 20px 10px 10px 10px;
+	color: rgb(26, 26, 26);
+	font-weight: bold;
+}
+
+.links {
+	width: 60%;
+	border: 1px solid rgb(26, 26, 26);
+	padding: 20px;
+}
+
+.links.hiddenMe {
+	display: none;
+}
+
+.links.shownMe {
+	display: inline-block;
+}
+
+.links a {
+	font-family: roboto;
+	text-decoration: none;
+	display: block;
+	padding: 5px 0px;
+}
+
+.selectMenu {
+	display: none;
+	background-color: rgb(26,26,26);
+	padding: 10px 20px;
+	border-radius: 5px;
+	position: absolute;
+	text-align: center;
+}
+
+.selectMenu button {
+	background: transparent;
+	border: none;
+	font-size: 1.5em;
+	margin: 0px 10px;
+	color: white;
+}
+
+.selectMenu button.bold {
+	font-weight: bold;
+}
+
+.selectMenu button.underline {
+	text-decoration: underline;
+}
+
+.selectMenu button.red {
+	background-color: red;
+	height: 0.9em;
+	width: 20px;
+	border-radius: 3px;
+}
+
+.selectMenu button.black {
+	background-color: black;
+	height: 0.9em;
+	width: 20px;
+	border-radius: 3px;
+	border: 1px solid white;
+}
+
+.triangle {
+	width: 10px;
+	height: 10px;
+	bottom: -5px;
+	background-color: rgb(26,26,26);
+	position: absolute;
+	left: calc(50% - 10px);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.elementShownWhileDragging {
+	width: 50%;
+	height: 20px;
+	opacity: 0.7;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: left;
+	font-family: roboto;
+	position: absolute;
+	top: -200px;
+	padding: 0px 20px;
+}
+
+.infoButton {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	border: 1px solid rgb(26,26,26);
+	background-color: rgba(255,255,255,0);
+	color: rgb(26,26,26);
+	padding: 5px 20px;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	transition: all 0.2s;
+	font-family: roboto;
+	font-weight: bold;
+	cursor: pointer;
+	z-index: 4;
+}
+
+.infoButton:hover {
+	background-color: rgba(26,26,26,1);
+	color: rgb(255,255,255);
+}
+
+.info {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(26,26,26);
+	color: white;
+	position: absolute;
+	left: 0px;
+	font-family: geosans;
+	-webkit-transition: top 0.3s;
+	-moz-transition: top 0.3s;
+	transition: top 0.3s;
+	padding: 30px;
+	z-index: 5;
+}
+
+.info.hidden {
+	top: -150%;
+}
+
+.info.visible {
+	top: 0px;
+}
+
+.infoHead {
+	font-size: 3em;
+	position: relative;
+	-webkit-transition: top 0.2s;
+	-moz-transition: top 0.2s;
+	transition: top 0.2s;
+	font-weight: bold;
+}
+
+.infoHead.hidden {
+	top: -100px;
+}
+
+.infoHead.visible {
+	top: 0px;
+}
+
+.allInfo {
+	width: 60%;
+	text-align: justify;
+	position: relative;
+	-webkit-transition: left 0.2s;
+	-moz-transition: left 0.2s;
+	transition: left 0.2s;
+	display: inline-block;
+	padding: 20px;
+	font-size: 1.2em;
+	font-family: geosans;
+}
+
+.allInfo.hidden {
+	left: -100%;
+}
+
+.allInfo.visible {
+	left: 0px;
+}
+
+.crossButton {
+	background: transparent;
+	border: none;
+	position: absolute;
+	top: 30px;
+	right: 50px;
+	cursor: pointer;
+	-webkit-transition: right 0.2s;
+	-moz-transition: right 0.2s;
+	transition: right 0.2s;
+	z-index: 10;
+}
+
+.crossButton.visible {
+	right: 50px;
+}
+
+.crossButton.hidden {
+	right: -200px;
+}
+
+.tabbed {
+	width: 100%;
+	padding: 20px 50px 10px 50px;
+}
+
+.tabbed li {
+	margin-bottom: 15px;
+}
+
+.allInfo a {
+	color: white;
+}
+
+.loader {
+	width: 100%;
+	height: 100%;
+	z-index: 3;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(0,0,0,0.8);
+	color: white;
+	font-family: geosans;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.4em;
+	padding: 6%;
+	-webkit-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	transition: all 0.2s;
+	cursor: progress;
+}
+
+.loadImage {
+	text-align: center;
+	margin-bottom: 4%;
+}
+
+.loadImage img {
+	animation: loadRotate 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.loader.visible {
+	display: inline-block;
+	opacity: 1;
+}
+
+.loader.hidden {
+	display: none;
+	opacity: 0;
+}
+
+@keyframes loadRotate {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+
+	100% {
+		-webkit-transform: rotate(180deg);
+	}
+}
+
+@media (max-width: 800px){
+	.editorCont {
+		width: 90%;
+		font-size: 0.8em;
+	}
+
+	p {
+		padding: 0px 10px;
+	}
+
+	.info {
+		padding: 20px 0px;
+		overflow: auto;
+	}
+
+	.allInfo {
+		width: 95%;
+		padding: 10px;
+	}
+
+	.crossButton {
+		top: 20px;
+	}
+
+	.crossButton img {
+		width: 30px;
+	}
+
+	.crossButton.visible {
+		right: 20px;
+	}
+
+	.infoHead {
+		font-size: 2em;
+	}
+
+	.allInfo {
+		font-size: 1em;
+	}
+
+	.tabbed {
+		padding: 20px;
+		padding-bottom: 10px;
+	}
+
+	.infoButton {
+		position: relative;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		margin-bottom: 20px;
+	}
+}
