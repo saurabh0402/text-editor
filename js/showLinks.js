@@ -7,14 +7,21 @@
 
 		let links = document.getElementsByClassName("links")[0];
 		links.innerHTML = "";
+		var count = 0;
 
 		// Show all the elements to the user!
 		while((p = detectA.exec(a)) !== null){
-			let qwer = document.createElement("a");
-			qwer.href = p[2] || "#";
-			qwer.target = "__blank";
-			qwer.innerText = p[3];
-			links.appendChild(qwer);
+			++count;
+			let a = document.createElement("a");
+
+			if(count % 2 == 0) {
+				a.className = "red";
+			}
+
+			a.href = p[2] || "#";
+			a.target = "__blank";
+			a.innerText = p[3];
+			links.appendChild(a);
 			links.className = "links shownMe";
 		}
 	}

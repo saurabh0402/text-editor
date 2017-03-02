@@ -339,6 +339,10 @@ p:focus {
 	opacity: 0;
 }
 
+a.red {
+	color: red;
+}
+
 @keyframes loadRotate {
 	0% {
 		-webkit-transform: rotate(0deg);
