@@ -3,16 +3,16 @@
 	var elemBeingDragged;
 
 	function removeParagraphs(e){
-		let x = this.innerText;
+		var txt = this.innerText;
 
-		let p = Array.prototype.indexOf.call(document.getElementsByClassName("textIp"), this);
+		var p = Array.prototype.indexOf.call(document.getElementsByClassName("textIp"), this);
 		if(e.keyCode === 8){
-			if(!x.replace('\n', '')){
+			if(!txt.replace('\n', '')){
 
 				// Don't know why but this.previousSibling.focus() was not working
 				// So, a way out. This works and passes the focus on to the previous element :)
 				document.getElementsByClassName("textIp")[p].focus();
-				let that = this;
+				var that = this;
 				setTimeout(function(){
 					document.getElementsByClassName("textFieldsCont")[0].removeChild(that.previousElementSibling);
 					document.getElementsByClassName("textFieldsCont")[0].removeChild(that);
@@ -24,15 +24,15 @@
 
 	function createParagraphOnEnter(){
 		// Get text in that paragraph
-		let x = this.innerHTML;
+		var x = this.innerHTML;
 		// If the user pressed return key, get it's index
-		let indexReturnKey = x.indexOf('<br>');
+		var indexReturnKey = x.indexOf('<br>');
 
 		// If return key was pressed, indexReturnKey will be some integer other than -1
 		if(indexReturnKey != -1){
 
 			// Get text after the enter key.
-			let y = x.slice(indexReturnKey + 4);
+			var y = x.slice(indexReturnKey + 4);
 			// Get text before the enter key.
 			x = x.slice(0, indexReturnKey);
 
@@ -61,7 +61,7 @@
 	}
 
 	function getBackToDefaultConfig(){
-		let x = document.getElementsByClassName("textIp")[0], s = document.getElementsByClassName("textFieldsCont")[0];
+		var x = document.getElementsByClassName("textIp")[0], s = document.getElementsByClassName("textFieldsCont")[0];
 
 		// If outer span does not exist in the editor, create it!
 		if(!s){

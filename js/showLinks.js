@@ -5,14 +5,14 @@
 		var detectA = /<a(\s*(?:href\s*=\s*['"]?([a-zA-Z0-9:./]+)['"]?))?[^>]*>([\w\W]+?)<\/a>/ig;
 		var a = document.getElementsByClassName("editorCont")[0].innerText;
 
-		let links = document.getElementsByClassName("links")[0];
+		var links = document.getElementsByClassName("links")[0];
 		links.innerHTML = "";
 		var count = 0;
 
 		// Show all the elements to the user!
 		while((p = detectA.exec(a)) !== null){
 			++count;
-			let a = document.createElement("a");
+			var a = document.createElement("a");
 
 			if(count % 2 == 0) {
 				a.className = "red";

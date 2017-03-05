@@ -219,7 +219,7 @@ p:focus {
 }
 
 .info.hidden {
-	top: -150%;
+	top: -250%;
 }
 
 .info.visible {
