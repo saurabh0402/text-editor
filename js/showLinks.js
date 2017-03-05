@@ -2,26 +2,26 @@
 (function(){
 	function showLinksInText(){
 		// This regular expression catches any a tag. href attribute is compulsory
-		var detectA = /<a(\s*(?:href\s*=\s*['"]?([a-zA-Z0-9:./]+)['"]?))?[^>]*>([\w\W]+?)<\/a>/ig;
+		var detectA = /<a(\s*(?:href\s*=\s*['"]?([a-zA-Z\-0-9:./]+)['"]?))?[^>]*>([\w\W]+?)<\/a>/ig;
 		var a = document.getElementsByClassName("editorCont")[0].innerText;
 
 		var links = document.getElementsByClassName("links")[0];
-		links.innerHTML = "";
 		var count = 0;
+		links.innerHTML = "";
 
 		// Show all the elements to the user!
 		while((p = detectA.exec(a)) !== null){
 			++count;
-			var a = document.createElement("a");
+			var anchor = document.createElement("a");
 
-			if(count % 2 == 0) {
-				a.className = "red";
+			if(count%2 == 0){
+				anchor.className = "red";
 			}
 
-			a.href = p[2] || "#";
-			a.target = "__blank";
-			a.innerText = p[3];
-			links.appendChild(a);
+			anchor.href = p[2] || "#";
+			anchor.target = "__blank";
+			anchor.innerText = p[3];
+			links.appendChild(anchor);
 			links.className = "links shownMe";
 		}
 	}
