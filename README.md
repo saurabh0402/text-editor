@@ -1,5 +1,5 @@
 # Text-Editor
-This is simple text editor created in JavaScript for a challenge given by SocialCops. It has following features:
+This is simple text editor created in JavaScript. It has following features:
 * When user presses enter, a new paragraph is created with the new paragraph having the focus.
 * User can drag and drop paragraphs to change their order. User can start the drag from the end or an empty region of the paragraph. While the user drags a paragraph, the regions where it could be dragged are highlighted and when drop on a valid region, the paragraph is moved there, if possible.
 * When user selects a word or a sentence, a tooltip is shown. From the tooltip user can select one of the four options - bold, underline, change color to red and change color to black.
